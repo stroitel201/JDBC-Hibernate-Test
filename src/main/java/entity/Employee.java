@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Date;
+import java.util.Set;
 
 public class Employee {
 
@@ -8,7 +9,11 @@ public class Employee {
     private String firstName;
     private String lastName;
     private Date birthday;
-    private long adressID;
+    private Address address;
+
+
+
+    private Set<Project> projects;
 
     public Employee(){
 
@@ -46,36 +51,21 @@ public class Employee {
         this.birthday = birthday;
     }
 
-    public long getAdressID() {
-        return adressID;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdressID(long adressID) {
-        this.adressID = adressID;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Employee employee = (Employee) o;
-
-        if (id != employee.id) return false;
-        if (adressID != employee.adressID) return false;
-        if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(employee.lastName) : employee.lastName != null) return false;
-        return birthday != null ? birthday.equals(employee.birthday) : employee.birthday == null;
+    public Set<Project> getProjects() {
+        return projects;
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-        result = 31 * result + (int) (adressID ^ (adressID >>> 32));
-        return result;
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @Override
@@ -85,7 +75,7 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthday=" + birthday +
-                ", adressID=" + adressID +
+                ", adress=" + address +
                 '}';
     }
 }
