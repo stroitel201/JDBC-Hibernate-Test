@@ -11,8 +11,6 @@ public class Employee {
     private Date birthday;
     private Address address;
 
-
-
     private Set<Project> projects;
 
     public Employee(){
@@ -58,7 +56,6 @@ public class Employee {
     public void setAddress(Address address) {
         this.address = address;
     }
-
 
     public Set<Project> getProjects() {
         return projects;
