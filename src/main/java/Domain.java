@@ -1,6 +1,5 @@
 import business.Util;
 import entity.Address;
-import service.AddressService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,12 +16,6 @@ public class Domain {
         address.setPostCode("220032");
 
 
-        List<Address> list;
-        new AddressService().remove(address);;
-        list = new AddressService().getAll();
-        for (Address i:
-             list) {
-            System.out.println(i);
-        }
+
     }
 }
