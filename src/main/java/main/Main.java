@@ -5,56 +5,54 @@ import entity.Address;
 import entity.Employee;
 import entity.Project;
 import org.hibernate.Session;
+import service.AddressService;
+import service.EmployeeService;
+import service.ProjectService;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
-    public static void main(String[] args) {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        session.beginTransaction();
+    public static void main(String[] args) throws SQLException {
+        AddressService addressService = new AddressService();
+        EmployeeService employeeService = new EmployeeService();
+        ProjectService projectService = new ProjectService();
 
         Address address = new Address();
-        address.setCountry("USA");
-        address.setCity("LA");
-        address.setStreet("Avenue 5");
-        address.setPostCode("222060");
-
-        Employee employee = new Employee();
-        employee.setFirstName("Ivan");
-        employee.setLastName("Ivanovich");
-        employee.setAddress(address);
-        Employee employee2 = new Employee();
-        employee2.setFirstName("Ivan");
-        employee2.setLastName("Ivanovich");
-        employee2.setAddress(address);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2000, Calendar.APRIL, 1);
-        employee.setBirthday(new Date(calendar.getTime().getTime()));
-        employee2.setBirthday(new Date(calendar.getTime().getTime()));
+        address.setCountry("DC");
+        address.setCity("Gotham city");
+        address.setStreet("Arkham street 1");
+        address.setPostCode("12345");
 
         Project project = new Project();
-        project.setTitle("228");
-        Project project2 = new Project();
-        project2.setTitle("1337");
+        project.setTitle("Gotham PD");
+
+        Employee employee = new Employee();
+        employee.setFirstName("James");
+        employee.setLastName("Gordon");
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(1939, Calendar.MAY, 1);
+
+        employee.setBirthday(new Date(calendar.getTime().getTime()));
+        employee.setAddress(address);
 
         Set<Project> projects = new HashSet<>();
         projects.add(project);
-        projects.add(project2);
         employee.setProjects(projects);
-        employee2.setProjects(projects);
-        session.save(address);
-        session.save(employee);
-        session.save(employee2);
-        session.save(project);
-        session.save(project2);
 
-        session.getTransaction().commit();
+        employeeService.add(employee);
+
+        Employee employee1 = employeeService.getById(1);
+        System.out.println(employee1);
+        Set<Project> projects1 = employee1.getProjects();
+        for (Project i:
+             projects1) {
+            System.out.println(project);
+        }
         HibernateUtil.shutdown();
     }
 }
