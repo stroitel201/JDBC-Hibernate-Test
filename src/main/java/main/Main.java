@@ -46,13 +46,7 @@ public class Main {
 
         employeeService.add(employee);
 
-        Employee employee1 = employeeService.getById(1);
-        System.out.println(employee1);
-        Set<Project> projects1 = employee1.getProjects();
-        for (Project i:
-             projects1) {
-            System.out.println(project);
-        }
+
         HibernateUtil.shutdown();
     }
 }

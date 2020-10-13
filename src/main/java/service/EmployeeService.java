@@ -48,9 +48,8 @@ public class EmployeeService extends SessionUtil implements EmployeeDAO {
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Employee.class);
         query.setParameter("id", id);
-
         Employee employee = (Employee) query.getSingleResult();
-
+        
         //close session with a transaction
         closeTransactionSession();
 
