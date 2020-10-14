@@ -9,11 +9,10 @@ import service.AddressService;
 import service.EmployeeService;
 import service.ProjectService;
 
+import javax.persistence.Query;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
@@ -45,8 +44,13 @@ public class Main {
         employee.setProjects(projects);
 
         employeeService.add(employee);
-
-
+        System.out.println(employeeService.getById(1));
+        List<Employee> list = employeeService.getAll();
+        for (Employee e:list
+             ) {
+            System.out.println(e);
+        }
         HibernateUtil.shutdown();
+
     }
 }

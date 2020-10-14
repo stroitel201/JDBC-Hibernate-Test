@@ -27,10 +27,10 @@ public class EmployeeService extends SessionUtil implements EmployeeDAO {
         //open session with a transaction
         openTransactionSession();
 
-        String sql = "SELECT * FROM EMPLOYEE";
+        String sql = "from Employee";
 
         Session session = getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Employee.class);
+        Query query = session.createQuery(sql);
         List<Employee> employeeList = query.list();
 
         //close session with a transaction
@@ -43,10 +43,10 @@ public class EmployeeService extends SessionUtil implements EmployeeDAO {
         //open session with a transaction
         openTransactionSession();
 
-        String sql = "SELECT * FROM EMPLOYEE WHERE ID = :id";
+        String sql = "from Employee where id = :id";
 
         Session session = getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Employee.class);
+        Query query = session.createQuery(sql);
         query.setParameter("id", id);
         Employee employee = (Employee) query.getSingleResult();
         

@@ -24,7 +24,7 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "EMPL_PROJ",
             joinColumns = @JoinColumn(name = "EMPLOYEE_ID"),
